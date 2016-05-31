@@ -1,7 +1,8 @@
 # ISBN to Google spreadsheet
 
-Enables you to quickly look up metadata associated with an ISBN and append it to a google spreadsheet. The books isbn, title, author, year, and publisher, are stored in as a new row.
-*note:* google spreadsheets have 1000 rows by default. If you do not initially remove these the app will start appending rows at 1001.
+Enables you to quickly look up metadata associated with an ISBN and append it to a google spreadsheet. The books isbn, title, author, year, and publisher, are stored together as a new row.
+
+**note:** google spreadsheets have 1000 rows by default. If you do not initially remove these the app will start appending rows at 1001.
 
 This has been build to be used with the iPhone application [iScanWeb](https://itunes.apple.com/us/app/iscan-scan-barcodes-to-web/id443235962?mt=8). This enables users to quickly scan barcodes of books to share the metadata.
 
@@ -37,5 +38,6 @@ css_dir = /dir/of/css/files
 google_speadsheet = url.to.google.speadsheet 
 google_credentials = /path/to/credentials.json
 isbndb_key = yourkeyforisbndb.com
+trove_key = an api key for trove.nla.gov.au
 
 ```
