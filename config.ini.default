@@ -1,0 +1,23 @@
+[uwsgi]
+vhost = true
+plugins = python
+chdir = /home/your/app/
+virtualenv = /home/your/app/venv/
+wsgi-file = /home/your/app/app/uwsgi.py
+master = true
+processes = 1 # number of cores on machine
+max-requests = 5000
+vacuum = true
+socket = /dir/to/uwsgi.sock
+chmod-socket = 666
+logto = /home/your/app/app.log
+
+[server]
+server_port = default port or uwsgi socked
+images_dir = /dir/of/static/images/directory
+css_dir = /dir/of/css/files
+
+[authentication]
+google_speadsheet = url.to.google.speadsheet 
+google_credentials = /path/to/credentials.json
+isbndb_key = yourkeyforisbndb.com

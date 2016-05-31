@@ -1,0 +1,14 @@
+# login details
+credentials.json
+config.ini
+
+isbn_test.py
+
+# Logs
+*.log
+
+# precompiled python
+**/*.pyc
+
+# virtual environment
+venv
