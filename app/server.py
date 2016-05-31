@@ -56,8 +56,23 @@ class LibraryCatalogue(object):
 		wks = self.gc.open_by_url(self.link).sheet1
 		#should check if has been collected before
 		canonical = reduce_metadata(clean_isbn,['merge','isbndb','openl'])
-		wks.append_row([isbn, canonical["Title"], ', '.join(canonical["Authors"]), canonical["Year"], canonical["Publisher"]]);
-		return "this is an isbn "+ clean_isbn 
+		if not canonical:
+			return "no metadata found for isbn: " + clean_isbn
+		row_data = [clean_isbn, canonical["Title"], ', '.join(canonical["Authors"]), canonical["Year"], canonical["Publisher"]]
+		wks.append_row(row_data);
+		row_data.append(self.link);
+		return """<html>
+			<head></head>
+			<body>
+				<p><strong>success</strong>, but is this right?</p>
+				<p><strong>isbn:</strong> {}</p>
+				<p><strong>title:</strong> {}</p>
+				<p><strong>author:</strong> {}</p>
+				<p><strong>year:</strong> {}</p>
+				<p><strong>publisher:</strong> {}</p>
+				<p>If not remove it from the google spreadsheet <a href='{}' target='_blank'>here</a></p>
+			</body>
+			<html>""".format(*row_data)
 
 if __name__ == '__main__':
 	cherrypy.quickstart(LibraryCatalogue())
