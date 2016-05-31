@@ -64,12 +64,13 @@ class LibraryCatalogue(object):
 		return """<html>
 			<head></head>
 			<body>
-				<p><strong>success</strong>, but is this right?</p>
-				<p><strong>isbn:</strong> {}</p>
-				<p><strong>title:</strong> {}</p>
-				<p><strong>author:</strong> {}</p>
-				<p><strong>year:</strong> {}</p>
-				<p><strong>publisher:</strong> {}</p>
+				<h1><span style='color:#0F0'>success</span>, but is this right?</h1>
+				<table border='0'>
+				<tr><td><strong>isbn:</strong> </td><td>{}</td></tr>
+				<tr><td><strong>title:</strong> </td><td>{}</td></tr>
+				<tr><td><strong>author:</strong> </td><td>{}</td></tr>
+				<tr><td><strong>year:</strong> </td><td>{}</td></tr>
+				<tr><td><strong>publisher:</strong> </td><td>{}</td></tr>
 				<p>If not remove it from the google spreadsheet <a href='{}' target='_blank'>here</a></p>
 			</body>
 			<html>""".format(*row_data)

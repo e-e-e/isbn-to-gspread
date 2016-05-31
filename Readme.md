@@ -8,7 +8,9 @@ This has been build to be used with the iPhone application [iScanWeb](https://it
 To configure the iScanWeb app:
 
 > Form Name = isbnform
+
 > Form Field = isbn
+
 > Start Url = the url pointing to this app
 
 This has been developed to help with cataloguing the library at [Frontyard](www.frontyardprojects.org/library).
