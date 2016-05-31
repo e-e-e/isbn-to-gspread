@@ -14,6 +14,8 @@ GOOGLE_SPREADSHEET = config.get('authentication','google_speadsheet')
 
 GOOGLE_OAUTH = config.get('authentication', 'google_credentials')
 ISBNDB_KEY = config.get('authentication','isbndb_key')
+TROVE_KEY = config.get('authentication','trove_key')
+
 
 SERVER_PORT = config.get('server', 'server_port')
 SERVER_IMAGES = config.get('server', 'images_dir')

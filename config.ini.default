@@ -21,3 +21,4 @@ css_dir = /dir/of/css/files
 google_speadsheet = url.to.google.speadsheet 
 google_credentials = /path/to/credentials.json
 isbndb_key = yourkeyforisbndb.com
+trove_key = yourkeyfor.trove.nla.gov.au
