@@ -64,13 +64,14 @@ class LibraryCatalogue(object):
 		return """<html>
 			<head></head>
 			<body>
-				<h1><span style='color:#0F0'>success</span>, but is this right?</h1>
+				<h1>SUCCESS, but is this right?</h1>
 				<table border='0'>
 				<tr><td><strong>isbn:</strong> </td><td>{}</td></tr>
 				<tr><td><strong>title:</strong> </td><td>{}</td></tr>
 				<tr><td><strong>author:</strong> </td><td>{}</td></tr>
 				<tr><td><strong>year:</strong> </td><td>{}</td></tr>
 				<tr><td><strong>publisher:</strong> </td><td>{}</td></tr>
+				</table>
 				<p>If not remove it from the google spreadsheet <a href='{}' target='_blank'>here</a></p>
 			</body>
 			<html>""".format(*row_data)
