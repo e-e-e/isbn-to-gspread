@@ -55,7 +55,7 @@ class LibraryCatalogue(object):
 		wks = self.gc.open_by_url(self.link).sheet1
 		wks.append_row(row_data);
 		row_data.append(self.link);
-		return """<html>
+		return u"""<html>
 			<head></head>
 			<body>
 				<h1>SUCCESS, but is this right?</h1>
