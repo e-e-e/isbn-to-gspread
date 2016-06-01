@@ -24,7 +24,7 @@ class Trove(object):
 					r = r[0]
 				print r;
 				authors = r['creator'];
-				if type(authors) is list:
+				if type(authors) is list and len(authors) > 0:
 					authors = ' | '.join(authors)
 				return {
 					'Authors' : authors,
