@@ -23,10 +23,9 @@ class Trove(object):
 				if type(r) is list:
 					r = r[0]
 				print r;
+				authors ='';
 				if 'creator' in r:
 					authors = r['creator'];
-				else :
-					authors ='';
 				if type(authors) is list and len(authors) > 0:
 					authors = u' | '.join([unicode(o) for o in authors])
 				return {
