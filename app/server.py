@@ -48,7 +48,7 @@ class LibraryCatalogue(object):
 			if not canonical:
 				return "no metadata found for isbn: " + clean_isbn
 			canonical['source']='isbnlib'
-			canonical["Authors"] = ', '.join(canonical["Authors"])
+			canonical["Authors"] = u', '.join(canonical["Authors"])
 			canonical['link']=None
 
 		row_data = ['isbn:'+clean_isbn, canonical["Title"], canonical["Authors"], canonical["Year"], canonical["Publisher"],canonical['link']]
