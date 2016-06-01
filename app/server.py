@@ -65,6 +65,7 @@ class LibraryCatalogue(object):
 				<tr><td><strong>author:</strong> </td><td>{}</td></tr>
 				<tr><td><strong>year:</strong> </td><td>{}</td></tr>
 				<tr><td><strong>publisher:</strong> </td><td>{}</td></tr>
+				<tr><td><strong>trove-link:</strong> </td><td>{}</td></tr>
 				</table>
 				<p>If not remove it from the google spreadsheet <a href='{}' target='_blank'>here</a></p>
 			</body>
