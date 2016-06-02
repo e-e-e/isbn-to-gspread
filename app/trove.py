@@ -60,7 +60,7 @@ class Trove(object):
 		return None
 
 	def version_with_isbn(self, record, isbn) :
-		ids = record['identifier']
+		ids = record.get('identifier',[])
 		for obj in ids:
 			if obj['type'].startswith('isbn') and isbnlib.get_canonical_isbn(obj['value']) == isbn :
 				return True
