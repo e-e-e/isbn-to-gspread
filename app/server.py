@@ -44,6 +44,17 @@ class LibraryCatalogue(object):
 		#first check trove
 		canonical = self.trove.extract(clean_isbn);
 		if not canonical :
+			# try alternative isbn form
+			print "trying alternative form "
+			alt_isbn = clean_isbn;
+			if isbnlib.is_isbn13(clean_isbn):
+				alt_isbn = isbnlib.to_isbn10(clean_isbn)
+			else :
+				alt_isbn = isbnlib.to_isbn13(clean_isbn)
+			canonical = self.trove.extract(alt_isbn);
+			if canonical :
+				clean_isbn = alt_isbn
+		if not canonical :
 			canonical = self.__reduce_metadata(clean_isbn,['merge','isbndb','openl'])
 			if not canonical:
 				return "no metadata found for isbn: " + clean_isbn
