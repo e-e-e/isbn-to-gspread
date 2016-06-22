@@ -47,7 +47,7 @@ class Trove(object):
 	def get_metadata(self, work, isbn):
 		res = requests.get('http://api.trove.nla.gov.au{}?encoding=json&reclevel=full&include=workversions&key={}'.format(work['url'],self.key))
 		versions = res.json()['work']['version']
-		pp.pprint(res.json());
+		#pp.pprint(res.json());
 		for version in versions :
 			record = version['record'];
 			if type(record) is list:
@@ -62,7 +62,9 @@ class Trove(object):
 	def version_with_isbn(self, record, isbn) :
 		ids = record.get('identifier',[])
 		for obj in ids:
-			if obj['type'].startswith('isbn') and isbnlib.get_canonical_isbn(obj['value']) == isbn :
+			i_type = obj.get('type');
+			i_value = obj.get('value');
+			if i_type and i_type.startswith('isbn') and isbnlib.get_canonical_isbn(i_value) == isbn :
 				return True
 		return False
 
