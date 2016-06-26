@@ -30,6 +30,18 @@ class LibraryCatalogue(object):
 		</html>"""
 
 	@cherrypy.expose
+	def trovelink(self):
+		return """<html>
+			<head></head>
+			<body>
+				<form method="get" action="/trover" name="trovelinkform">
+					<label for="trovelink">Trovelink: </label><input type="text" value="" name="trovelink"/>
+					<button type="submit">Add</button>
+				</form>
+			</body>
+		</html>"""
+
+	@cherrypy.expose
 	def isbn(self,isbn):
 		#adds isbn to google spread sheet
 		
@@ -64,18 +76,6 @@ class LibraryCatalogue(object):
 
 		row_data = ['isbn:'+clean_isbn, canonical["Title"], canonical["Authors"], canonical["Year"], canonical["Publisher"],canonical['link']]
 		return self.__add_and_render(row_data)
-
-	@cherrypy.expose
-	def trovelink(self):
-		return """<html>
-			<head></head>
-			<body>
-				<form method="get" action="/trover" name="trovelinkform">
-					<label for="trovelink">Trovelink: </label><input type="text" value="" name="trovelink"/>
-					<button type="submit">Add</button>
-				</form>
-			</body>
-		</html>"""
 
 	@cherrypy.expose
 	def trover(self,trovelink) :
