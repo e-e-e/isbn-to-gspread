@@ -1,4 +1,5 @@
 import urllib
+import urlparse
 import requests
 import isbnlib
 from config import TROVE_KEY
@@ -19,23 +20,26 @@ class Trove(object):
 		if books : 
 			v = self.get_metadata(books[0], isbn)
 			if v :
-				r = v['record']
-				if type(r) is list:
-					r = r[0]
-				print r;
-				authors = r.get('creator','');
-				if type(authors) is list and len(authors) > 0:
-					authors = u' | '.join([unicode(o) for o in authors])
-
-				return {
-					'Authors' : authors,
-					'Title' : r.get('title',''),
-					'Year' : r.get('issued',''),
-					'Publisher': r.get('publisher',''),
-					'source': r.get('metadataSource',''),
-					'link' : books[0]['troveUrl']+'?q&versionId='+urllib.quote(v['id'])
-				};
+				link = books[0]['troveUrl']+'?q&versionId='+urllib.quote(v['id'])
+				return massage_data(v,link)
 		return None
+
+	def massage_data(self, v, link) :
+		r = v['record']
+		if type(r) is list:
+			r = r[0]
+		print r;
+		authors = r.get('creator','');
+		if type(authors) is list and len(authors) > 0:
+			authors = u' | '.join([unicode(o) for o in authors])
+		return {
+			'Authors' : authors,
+			'Title' : r.get('title',''),
+			'Year' : r.get('issued',''),
+			'Publisher': r.get('publisher',''),
+			'source': r.get('metadataSource',''),
+			'link' : link
+		};
 
 	def find_isbn (self, isbn) :
 		res = requests.get('http://api.trove.nla.gov.au/result?q=isbn:{}&zone=book&encoding=json&key={}'.format(isbn,self.key))
@@ -68,6 +72,18 @@ class Trove(object):
 			if i_type and i_type.startswith('isbn') and isbnlib.get_canonical_isbn(i_value) == isbn :
 				return True
 		return False
+
+	def extract_from_link(self, link) :
+		url = urlparse.urlparse(link);
+		res = requests.get('http://api.trove.nla.gov.au{}?{}&encoding=json&reclevel=full&include=workVersions&key={}'.format(url.path,url.query,self.key))
+		queries = urlparse.parse_qs(url.query);
+		vid = queries.get('versionId')
+		versions = res.json()['work']['version']
+		for v in versions :
+			if v['id'] == vid[0] :
+				return self.massage_data(v, link)
+		return self.massage_data(versions[0], link)
+
 
 
 if __name__ == '__main__':

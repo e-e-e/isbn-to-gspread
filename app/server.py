@@ -28,7 +28,7 @@ class LibraryCatalogue(object):
 				</form>
 			</body>
 		</html>"""
-	
+
 	@cherrypy.expose
 	def isbn(self,isbn):
 		#adds isbn to google spread sheet
@@ -63,6 +63,27 @@ class LibraryCatalogue(object):
 			canonical['link']=None
 
 		row_data = ['isbn:'+clean_isbn, canonical["Title"], canonical["Authors"], canonical["Year"], canonical["Publisher"],canonical['link']]
+		return self.__add_and_render(row_data)
+
+	@cherrypy.expose
+	def trovelink(self):
+		return """<html>
+			<head></head>
+			<body>
+				<form method="get" action="/trover" name="trovelinkform">
+					<label for="trovelink">Trovelink: </label><input type="text" value="" name="trovelink"/>
+					<button type="submit">Add</button>
+				</form>
+			</body>
+		</html>"""
+
+	@cherrypy.expose
+	def trover(self,trovelink) :
+		data = self.trove.extract_from_link(trovelink);
+		row_data = [None, data["Title"], data["Authors"], data["Year"], data["Publisher"],data['link']]
+		return self.__add_and_render(row_data)
+
+	def __add_and_render (self,row_data) :
 		wks = self.gc.open_by_url(self.link).sheet1
 		wks.append_row(row_data);
 		row_data.append(self.link);
