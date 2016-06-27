@@ -84,7 +84,7 @@ class Trove(object):
 		for v in versions :
 			if v['id'] == vid[0] :
 				newlink = newlink +'?q&versionId='+urllib.quote(v['id'])
-				return self.massage_data(v, newlink+'&versionId')
+				return self.massage_data(v, newlink)
 		newlink = newlink +'?q&versionId='+urllib.quote(v['id'])
 		return self.massage_data(versions[0], link)
 
