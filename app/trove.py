@@ -21,7 +21,7 @@ class Trove(object):
 			v = self.get_metadata(books[0], isbn)
 			if v :
 				link = books[0]['troveUrl']+'?q&versionId='+urllib.quote(v['id'])
-				return massage_data(v,link)
+				return self.massage_data(v,link)
 		return None
 
 	def massage_data(self, v, link) :
