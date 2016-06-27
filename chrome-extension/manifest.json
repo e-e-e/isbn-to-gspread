@@ -1,0 +1,14 @@
+{
+	"manifest_version": 2,
+
+	"name": "Frontyard Library Trovelink Resolver",
+	"description": "This extension will grab data from trove using the URL you are on",
+	"version": "1.0",
+
+	"browser_action": {
+		"default_popup": "popup.html"
+	},
+	"permissions": [
+		"activeTab"
+	]
+}

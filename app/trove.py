@@ -78,10 +78,14 @@ class Trove(object):
 		res = requests.get('http://api.trove.nla.gov.au{}?{}&encoding=json&reclevel=full&include=workVersions&key={}'.format(url.path,url.query,self.key))
 		queries = urlparse.parse_qs(url.query);
 		vid = queries.get('versionId')
-		versions = res.json()['work']['version']
+		work = res.json()['work']
+		versions = work['version']
+		newlink = work.get['troveUrl'];
 		for v in versions :
 			if v['id'] == vid[0] :
-				return self.massage_data(v, link)
+				newlink = newlink +'?q&versionId='+urllib.quote(v['id'])
+				return self.massage_data(v, newlink+'&versionId')
+		newlink = newlink +'?q&versionId='+urllib.quote(v['id'])
 		return self.massage_data(versions[0], link)
 
 
