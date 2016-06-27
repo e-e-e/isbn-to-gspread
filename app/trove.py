@@ -80,7 +80,7 @@ class Trove(object):
 		vid = queries.get('versionId')
 		work = res.json()['work']
 		versions = work['version']
-		newlink = work.get['troveUrl'];
+		newlink = work.get('troveUrl', link);
 		for v in versions :
 			if v['id'] == vid[0] :
 				newlink = newlink +'?q&versionId='+urllib.quote(v['id'])
